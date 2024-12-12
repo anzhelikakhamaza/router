@@ -2,33 +2,31 @@
 import { reactive } from "vue";
 
 const user = reactive({
-  name: "",
   email: "",
   password: "",
-  passwordConfirmation: "",
 })
+
+const emits = defineEmits(["login"])
+
+const login = () => {
+  if (user.email && user.password) {
+    emits("login", user.email, user.password)
+    console.log(user.email)
+  } else {
+    alert('Please fill out the info')
+  }
+}
+
 </script>
 
 <template>
-  <div>
-    <h1>Sigh Up Form</h1>
-    <input type="text" v-model="user.name" placeholder="User Name" />
-    <input type="email" v-model="user.email" placeholder="User Email" />
-
-    <div>
-      <input type="password" v-model="user.password" placeholder="Password" />
-
-      <input
-          type="password"
-          v-model="user.passwordConfirmation"
-          placeholder="Confirm Password"
-      />
-    </div>
-
-    <div>
-      <button>Submit</button>
-    </div>
-  </div>
+  <form @submit.prevent="login">
+    <label>Email</label>
+    <input type="text" v-model="user.email" />
+    <label>Password</label>
+    <input type="password" v-model="user.password" />
+    <button type="submit">Login</button>
+  </form>
 </template>
 
 <style scoped>
