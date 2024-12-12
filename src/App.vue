@@ -8,6 +8,7 @@
   </div>
 
   <div>
+    <RouterLink to="/login">Login Page</RouterLink>
     <RouterLink to="/about">About</RouterLink>
   </div>
 
